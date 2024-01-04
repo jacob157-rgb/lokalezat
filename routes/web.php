@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('web.frontend.layouts.landing');
 });
+
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
+Route::get('login', [AuthController::class, 'logout'])->name('logout');
