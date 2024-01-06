@@ -6,7 +6,7 @@
 </head>
 
 <body class="bg-primary">
-    <div class="flex flex-col h-screen">
+    <div class="flex flex-col h-screen lg:flex lg:flex-row-reverse">
         <div class="flex flex-col items-center justify-center basis-1/2">
             <div class="flex flex-col items-center justify-center p-10 md:p-20">
                 <img class="w-3/4" src="{{ asset('assets/logo/logo_wht.png') }}" alt="">
@@ -14,7 +14,7 @@
                     Akurat.</span>
             </div>
         </div>
-        <div class="flex flex-col justify-center w-full p-10 bg-white basis-1/2 rounded-t-2xl">
+        <div class="flex flex-col justify-center w-full p-10 bg-white basis-1/2 rounded-t-2xl lg:rounded-t-none lg:rounded-r-2xl">
             <div class="flex justify-center">
                 <span class="text-xl pt-7">Sign Up</span>
             </div>

@@ -6,7 +6,7 @@
     </head>
 
     <body class="bg-primary">
-        <div class="flex flex-col h-screen">
+        <div class="flex flex-col h-screen lg:flex lg:flex-row-reverse">
             <div class="flex flex-col items-center justify-center basis-1/2">
                 <div class="flex flex-col items-center justify-center p-10 md:p-20">
                     <img class="w-3/4" src="{{ asset('assets/logo/logo_wht.png') }}" alt="">
@@ -14,7 +14,7 @@
                         Akurat.</span>
                 </div>
             </div>
-            <div class="flex flex-col justify-center w-full p-10 bg-white basis-1/2 rounded-t-2xl">
+            <div class="flex flex-col justify-center w-full p-10 bg-white basis-1/2 rounded-t-2xl lg:rounded-t-none lg:rounded-r-2xl">
                 <div class="flex justify-center">
                     <span class="pt-2 text-xl">Lupa Password</span>
                 </div>
@@ -39,6 +39,10 @@
                         <button type="submit" class="w-full py-2 text-lg text-white bg-primary rounded-xl">Reset
                             Password
                         </button>
+                    </div>
+                    <div class="flex pt-5 text-center">
+                        <a href="/login"
+                                class="w-full py-3 text-lg font-semibold rounded-xl">Masuk</a></span>
                     </div>
                 </form>
             </div>
