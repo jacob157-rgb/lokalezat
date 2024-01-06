@@ -12,4 +12,7 @@ class AuthController extends Controller
     public function getRegister() {
         return view('web.auth.register');
     }
+    public function getForgot() {
+        return view('web.auth.forgot');
+    }
 }

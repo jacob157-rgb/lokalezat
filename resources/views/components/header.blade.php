@@ -32,7 +32,7 @@
         <!-- Action buttons -->
         <div class="items-center hidden mr-10 lg:flex">
             <button class="px-5 py-3 text-white bg-primary rounded-xl active:bg-red-800">Daftarkan Tempat</button>
-            <button class="px-4">Admin <span><i class="bi bi-arrow-right-circle"></i></span></button>
+            <a href="/login" class="px-4">Admin <span><i class="bi bi-arrow-right-circle"></i></span></a>
         </div>
     </nav>
 
@@ -103,7 +103,7 @@
             <div class="flex items-center col-span-2">
                 <button class="px-4 py-2 text-sm text-white rounded-lg bg-primary active:bg-red-800">Daftarkan
                     Tempat</button>
-                <button class="px-4 text-sm">Admin <span><i class="bi bi-arrow-right-circle"></i></span></button>
+                <a href="/login" class="px-4 text-sm">Admin <span><i class="bi bi-arrow-right-circle"></i></span></a>
             </div>
         </div>
     </div>

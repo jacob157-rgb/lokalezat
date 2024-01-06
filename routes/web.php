@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
 Route::get('/register', [AuthController::class, 'getRegister'])->name('register');
+Route::get('/forgot', [AuthController::class, 'getForgot'])->name('forgot');

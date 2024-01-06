@@ -16,8 +16,13 @@
             </div>
             <div class="flex flex-col justify-center w-full p-10 bg-white basis-1/2 rounded-t-2xl">
                 <div class="flex justify-center">
-                    <span class="text-xl pt-7">Sign In</span>
-                </div>             
+                    <span class="pt-2 text-xl">Lupa Password</span>
+                </div>
+
+                <div class="flex justify-center">
+                    <span class="pt-4 text-sm text-gray-600">Masukan email akun Anda, kami akan mengirimkan link reset
+                        password.</span>
+                </div>
                 <form action="" method="POST">
                     @csrf
                     <div class="flex justify-center pt-5">
@@ -30,26 +35,10 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-center pt-5">
-                        <div class="w-full">
-                            <label for="password"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                            <input type="password" id="password"
-                                class="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 block w-full rounded-xl border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                                required>
-                        </div>
-                    </div>
-
                     <div class="flex justify-center pt-10">
-                        <button type="submit" class="w-full py-2 text-lg text-white bg-primary rounded-xl">Masuk
-                            <span class="align-middle"><i class="bi bi-arrow-right-circle"></i></span></button>
-                    </div>
-                    <div class="flex justify-center pt-5">
-                        <span>Belum Memiliki Akun? <a href="/register"
-                                class="w-full py-3 text-lg font-semibold rounded-xl">Daftar</a></span>
-                    </div>
-                    <div class="flex pt-5 text-center">
-                        <a href="/forgot" class="w-full py-3 text-lg rounded-xl">Lupa Password?</a>
+                        <button type="submit" class="w-full py-2 text-lg text-white bg-primary rounded-xl">Reset
+                            Password
+                        </button>
                     </div>
                 </form>
             </div>

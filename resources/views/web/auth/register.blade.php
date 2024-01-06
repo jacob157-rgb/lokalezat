@@ -14,7 +14,7 @@
                     Akurat.</span>
             </div>
         </div>
-        <div class="w-full p-10 bg-white basis-1/2 rounded-t-2xl">
+        <div class="flex flex-col justify-center w-full p-10 bg-white basis-1/2 rounded-t-2xl">
             <div class="flex justify-center">
                 <span class="text-xl pt-7">Sign Up</span>
             </div>
