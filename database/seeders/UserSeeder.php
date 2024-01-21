@@ -13,34 +13,55 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = [
+        User::insert([
             [
-                'name' => 'sadmin',
-                'email' => 'sadmin@gmail.com',
-                'password' => 'sadmin123',
-                'roles' => '1',
-            ],
-            [
-                'name' => 'admin',
+                'name' => 'Admin',
                 'email' => 'admin@gmail.com',
-                'password' => 'admin123',
-                'roles' => '2',
+                'password' =>bcrypt('admin123'),
+                'roles' => 1            
             ],
             [
-                'name' => 'user',
-                'email' => 'user@gmail.com',
-                'password' => 'user1234',
-                'roles' => '3',
+                'name' => 'Lala',
+                'email' => 'lala@gmail.com',
+                'password' =>bcrypt('lala123'),
+                'roles' => 2
             ],
             [
-                'name' => 'user1',
-                'email' => 'user1@gmail.com',
-                'password' => 'user1234',
-                'roles' => '3',
+                'name' => 'Lili',
+                'email' => 'lili@gmail.com',
+                'password' =>bcrypt('lili123'),
+                'roles' => 2
             ],
-        ];
-        foreach ($user as $key => $value) {
-            User::create($value);
-        }
+            [
+                'name' => 'Lulu',
+                'email' => 'lulu@gmail.com',
+                'password' =>bcrypt('lulu123'),
+                'roles' => 3
+            ],
+            [
+                'name' => 'Khasnah',
+                'email' => 'khasnah@gmail.com',
+                'password' =>bcrypt('khasnah123'),
+                'roles' => 3
+            ],
+            [
+                'name' => 'Ivana',
+                'email' => 'ivana@gmail.com',
+                'password' =>bcrypt('ivana123'),
+                'roles' => 3
+            ],
+            [
+                'name' => 'Jacob',
+                'email' => 'jacob@gmail.com',
+                'password' =>bcrypt('jacob123'),
+                'roles' => 3
+            ],
+            [
+                'name' => 'Rifqi',
+                'email' => 'rifqi@gmail.com',
+                'password' =>bcrypt('rifqi123'),
+                'roles' => 3
+            ],
+            ]);
     }
 }
