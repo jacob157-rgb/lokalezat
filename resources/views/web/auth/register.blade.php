@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <div class="flex justify-center">
-                    <button
+                    <a href="{{ route('socialite.redirect', ['provider' => 'google']) }}"
                         class="flex items-center justify-center w-full py-2 text-lg text-center border border-black rounded-xl"><svg
                             class="w-6 h-6 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 326667 333333"
                             shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
@@ -122,7 +122,7 @@
                                 d="M166667 64444c31296 0 52406 13519 64444 24816l47037-45926C249260 16482 211666 1 166667 1 101481 1 45185 37408 17777 91852l53889 41853c13520-40185 50927-69260 95001-69260m0 0z"
                                 fill="#ea4335" />
                         </svg> Google
-                    </button>
+                    </a>
                 </div>
                 <div class="flex justify-center">
                     <div class="w-full">

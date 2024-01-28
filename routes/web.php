@@ -1,22 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\SocialiteController;
 
+Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])->name('socialite.redirect');   
+Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback']);
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('web.frontend.layouts.landing');
-});
 
 Route::view('/', 'home')->middleware(['auth', 'verified']);
 Route::get('/home', function() {
