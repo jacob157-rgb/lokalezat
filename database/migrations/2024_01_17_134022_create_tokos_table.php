@@ -23,13 +23,16 @@ return new class extends Migration
             $table->decimal('ratings', 3,2)->default(0.0); // Ratings Bintang diambil dari rata rata Review Menu
             $table->string('cara_makan'); // ['Dine in','Takeaway']
             $table->string('jadwal_buka'); // Jadwal Buka Toko
+            $table->string('alamat'); // Alamat Toko
             $table->string('link_gmaps'); // Link Google Maps di Upload Oleh Seller (Rencana Mau Pake Longitude Latitude. Kemungkinan Pake Laravolt/Indonesia)
+            $table->string('tentang_toko'); // Deskripsikan Tentang Toko
             $table->string('cara_menjangkau'); // Deskripsi Cara Menjangkau Toko
             $table->string('akses_jalan')->nullable(); // Akses Jalan / (dapat dilewati oleh) ['Pejalan Kaki', 'Motor', 'Mobil Kecil', 'Mobil Sedang', 'Mobil Besar', 'Kendaraan Besar']
             $table->string('transportasi_umum')->nullable(); // Akses Transportasi Umum sekitar toko ['Bus', 'Mini Bus', 'Angkutan Umum', 'Ojek Online', 'Ojek', 'Becak', 'Taxi']
             $table->string('fasilitas_umum')->nullable(); // Fasilitas Toko [‘Mushola’, ‘Toilet’, ’Rest Area’, ‘Wifi’, 'Stop Kontak', 'Outdoor Area', 'Indoor Area', 'Kursi Anak', 'Tempat bermain']
             $table->string('kontak'); // Kontak Penjual ['No_WA', 'Email', 'Situs Web', 'Online Store']
             $table->string('foto_toko'); // Foto Dari Sekitar toko 
+            $table->enum('status', [0,1])->default(0); // Status toko 0 = Inactive, 1 = Active
             $table->timestamps();
         });
     }

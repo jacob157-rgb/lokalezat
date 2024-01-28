@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LoginResponse;
+use Auth;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -20,7 +22,19 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // $this->app->instance(
+        //     LoginResponse::class,
+        //     new class implements LoginResponse {
+        //         public function toResponse($request)
+        //         {
+        //             if (Auth::user()->hasRole('Admin')) {
+        //                 return $request->wantsJson()
+        //                     ? response()->json(['two_factor' => false])
+        //                     : redirect()->intended(config('fortify.home-admin'));
+        //             }
+        //         }
+        //     }
+        // );
     }
 
     /**
@@ -32,6 +46,37 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+
+        // Register
+        Fortify::registerView(function () {
+            return view('web.auth.register');
+        });
+        // End Register
+
+        // Verify Email
+        Fortify::verifyEmailView(function () {
+            return view('web.auth.verify');
+        });
+        // End Verify Email
+
+        // Password Reset
+        Fortify::requestPasswordResetLinkView(function () {
+            return view('web.auth.forgot');
+        });
+        // End Password Reset
+
+        // Password Reset View
+        Fortify::resetPasswordView(function ($request) {
+            return view('web.auth.reset', ['request' => $request]);
+        });
+        // End Password Reset View
+
+        // Login
+        Fortify::loginView(function () {
+            return view('web.auth.login');
+        });
+        // End Login
+
 
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());

@@ -4,7 +4,9 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "host": "vite --host"
+        "host": "vite --host",
+        "build-css": "npx tailwindcss -i ./resources/css/app.css -o ./public/assets/css/style.css --watch",
+        "build-js": "npx esbuild ./resources/js/app.js --outfile=public/assets/js/scripts.js --bundle --watch"
     },
     "devDependencies": {
         "@shufo/prettier-plugin-blade": "^1.13.4",
@@ -19,6 +21,9 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@alpinejs/intersect": "^3.13.3",
+        "alpinejs": "^3.13.3",
+        "esbuild": "^0.19.11",
         "flowbite": "^2.2.1"
     }
 }

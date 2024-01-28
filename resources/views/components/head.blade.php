@@ -12,7 +12,12 @@
 {{-- End Font --}}
 {{-- Tailwind CSS --}}
 @vite('resources/css/app.css')
+<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 {{-- End Tailwind CSS --}}
+{{-- AlpineJS --}}
+@vite('resources/js/app.js')
+<script src="{{ asset('assets/js/scripts.js') }}"></script>
+{{-- End AlpineJS --}}
 {{-- Flowbite JS --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 {{-- End Flowbite JS --}}

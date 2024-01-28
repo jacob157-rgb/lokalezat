@@ -20,7 +20,7 @@ return new class extends Migration
             // End Reference User(3) untuk Profile
 
             $table->string('profil_photos')->nullable(); // Foto Profil untuk User(3)
-            $table->string('bio', 150)->nullable(); // Biography?
+            $table->string('bio', 150)->nullable(); // Biography? 
             $table->enum('gender', ['L','P','N']); // L = Laki-Laki, P = Perempuan, N = Tidak Menyebutkan
             $table->timestamps();
         });

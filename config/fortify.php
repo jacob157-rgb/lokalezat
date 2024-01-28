@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\RouteServiceProvider;
+use Illuminate\Routing\Route;
 use Laravel\Fortify\Features;
 
 return [
@@ -73,7 +75,9 @@ return [
     |
     */
 
-    'home' => '/home',
+    'home' => RouteServiceProvider::HOME,
+    'home-seller' => RouteServiceProvider::HOME_SELLER,
+    'home-admin' => RouteServiceProvider::HOME_ADMIN,
 
     /*
     |--------------------------------------------------------------------------
@@ -146,14 +150,14 @@ return [
     'features' => [
         Features::registration(),
         Features::resetPasswords(),
-        // Features::emailVerification(),
+        Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
-        Features::twoFactorAuthentication([
-            'confirm' => true,
-            'confirmPassword' => true,
-            // 'window' => 0,
-        ]),
+        // Features::twoFactorAuthentication([
+        //     'confirm' => true,
+        //     'confirmPassword' => true,
+        //     // 'window' => 0,
+        // ]),
     ],
 
 ];

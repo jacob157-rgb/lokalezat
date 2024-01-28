@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('web.frontend.layouts.landing');
 });
+
+Route::view('/', 'home')->middleware(['auth', 'verified']);
+Route::get('/home', function() {
+    return view('web.frontend.layouts.landing');
+});

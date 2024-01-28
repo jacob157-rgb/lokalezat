@@ -14,35 +14,40 @@
                         Akurat.</span>
                 </div>
             </div>
-            <div class="flex flex-col justify-center w-full p-10 bg-white basis-1/2 rounded-t-2xl lg:rounded-t-none lg:rounded-r-2xl">
+            <div class="flex flex-col justify-center w-full p-10 bg-white basis-1/2 rounded-t-2xl lg:rounded-l-none lg:rounded-r-2xl">
                 <div class="flex justify-center">
-                    <span class="pt-2 text-xl">Lupa Password</span>
+                    <span class="pt-1 text-3xl">Lupa Password</span>
                 </div>
 
-                <div class="flex justify-center">
-                    <span class="pt-4 text-sm text-gray-600">Masukan email akun Anda, kami akan mengirimkan link reset
+                <div class="flex justify-center text-center">
+                    <span class="pt-4 text-gray-900">Masukan email akun Anda, kami akan mengirimkan link reset
                         password.</span>
                 </div>
-                <form action="" method="POST">
+                <div class="flex justify-center">
+                    <span class="pt-4 text-sm text-gray-600">Belum menerima email?, Cek Folder Spam atau <a href="" class="font-semibold text-primary hover:underline">klik disini</a></span>
+                </div>
+                <form action="{{ route('password.email') }}" method="POST" novalidate>
                     @csrf
                     <div class="flex justify-center pt-5">
                         <div class="w-full">
-                            <label for="email"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                            <input type="email" id="email"
-                                class="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 block w-full rounded-xl border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                                required>
+                            <label for="email" class="block text-sm font-medium text-gray-900">Email</label>
+                            <input type="email" id="email" name="email"
+                                class="us:border-primary-500 focus:ring-primary-500 block w-full rounded-xl border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                value="{{ old('email') }}" required autocomplete="email">
+                            @error('email')
+                                <span class="text-xs font-medium text-red-600">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="flex justify-center pt-10">
-                        <button type="submit" class="w-full py-2 text-lg text-white bg-primary rounded-xl">Reset
-                            Password
+                        <button type="submit" class="w-full py-2 text-lg text-white bg-primary rounded-xl">
+                            Kirim Email
                         </button>
                     </div>
                     <div class="flex pt-5 text-center">
                         <a href="/login"
-                                class="w-full py-3 text-lg font-semibold rounded-xl">Masuk</a></span>
+                                class="w-full py-3 text-lg font-semibold text-primary hover:underline">Masuk</a></span>
                     </div>
                 </form>
             </div>
