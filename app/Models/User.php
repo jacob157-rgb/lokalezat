@@ -26,7 +26,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'roles'
+        'avatar',
+        'bio',
+        'gender',
+        'roles',
     ];
 
     /**
@@ -65,13 +68,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Toko::class);
     }
     // End One to One (User(2))
-
-    // One to One (User(3))
-    public function profile()   
-    {
-        return $this->hasOne(Profile::class);
-    }
-    // End One to One (User(3))
     
     // Many to Many (User(3) <-> Wishlist <-> Toko/Menu)
     public function wishmenu()

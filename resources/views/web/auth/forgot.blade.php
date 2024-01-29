@@ -24,7 +24,7 @@
                         password.</span>
                 </div>
                 <div class="flex justify-center">
-                    <span class="pt-4 text-sm text-gray-600">Belum menerima email?, Cek Folder Spam atau <a href="" class="font-semibold text-primary hover:underline">klik disini</a></span>
+                    <span class="pt-4 text-sm text-gray-600">Belum menerima email?, Cek Folder Spam atau <a href="{{ route('password.email') }}" class="font-semibold text-primary hover:underline">klik disini</a></span>
                 </div>
                 <form action="{{ route('password.email') }}" method="POST" novalidate>
                     @csrf

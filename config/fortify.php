@@ -120,7 +120,9 @@ return [
 
     'limiters' => [
         'login' => 'login',
+        'forgot-password' => 'forgot-password',
         'two-factor' => 'two-factor',
+        'verification' => 'verification',
     ],
 
     /*
