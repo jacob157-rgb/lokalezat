@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('name'); // Nama Lengkap User
             $table->string('email')->unique(); // Email(gmail)
             $table->timestamp('email_verified_at')->nullable(); //Verifikasi Email
-            $table->string('provider_id')->nullable(); // Provider untuk Socialite
+            $table->string('provider_id')->nullable(); // ID Provider untuk Socialite
             $table->string('password');
             $table->string('avatar')->nullable(); // Foto Profil untuk User
             $table->string('bio', 150)->nullable(); // Biography
-            $table->enum('gender', ['L','P','N'])->default(''); // L = Laki-Laki, P = Perempuan, N = Tidak Menyebutkan
+            $table->enum('gender', ['L','P','N'])->default('N'); // L = Laki-Laki, P = Perempuan, N = Tidak Menyebutkan
             $table->enum('roles', [1,2,3])->default(3); //1 = Admin, 2 = RegisteredSeller, 3 = RegisteredUser
             $table->rememberToken();
             $table->timestamps();

@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+
+use function PHPUnit\Framework\returnSelf;
 
 class SocialiteController extends Controller
 {
@@ -28,18 +33,63 @@ class SocialiteController extends Controller
     public function handleProviderCallback($provider)
     {
         try {
-            $user = Socialite::driver($provider)->user();
-            dd($user);
-        } catch (\Exception $e) {
-            // Handle exception if user cancels the authorization or an error occurs
-            return redirect('/login')->with('error', 'Unable to fetch user details from ' . ucfirst($provider) . '.');
+            $providerUser = Socialite::driver($provider)->user();
+            $userExist = User::where('provider_id', $providerUser->getId())->first();
+
+            if ($userExist) {
+                switch ($userExist->roles()) {
+                    case '1':
+                        dd($userExist->roles);
+                        Auth::login($userExist);
+                        session()->regenerate();
+                        return redirect('/admin');
+                    break;
+                    case '2':
+                        dd($userExist->roles);
+                        Auth::login($userExist);
+                        session()->regenerate();
+                        return redirect('/seller');
+                    break;
+                    default:
+                        dd($userExist->roles);
+                        Auth::login($userExist);
+                        session()->regenerate();
+                        return redirect('/');
+                    break;
+                }
+            } elseif ($providerUser->user['email_verified'] === true) {
+                $newUser = User::updateOrCreate(
+                    ['provider_id' => $providerUser->getId()],
+                    [
+                        'name' => $providerUser->getName(),
+                        'email' => $providerUser->getEmail(),
+                        'password' => bcrypt($providerUser->getId()),
+                        'avatar' => $providerUser->getAvatar(),
+                    ]
+                );
+                $newUser->markEmailAsVerified();
+                Auth::login($newUser);
+                session()->regenerate();
+                return redirect('/');
+            } else {
+                $newUser = User::updateOrCreate(
+                    ['provider_id' => $providerUser->getId()],
+                    [
+                        'name' => $providerUser->getName(),
+                        'email' => $providerUser->getEmail(),
+                        'password' => bcrypt($providerUser->getId()),
+                        'avatar' => $providerUser->getAvatar(),
+                    ]
+                );
+                Auth::login($newUser);
+                session()->regenerate();
+                return redirect('/');
+            }
+
+            return redirect('/'); // Redirect to the root after creating/updating the user
+        } catch (\Throwable $th) {
+            dd($th);
+            return redirect('/login')->with('error', 'Authentication failed.'); // Redirect to login with an error message
         }
-
-        // You can now use $user to get user details and log in the user or register them.
-        // For example, you might want to check if the user with this email already exists in your database.
-
-        // Auth::login($user); // Log in the user (optional)
-
-        return redirect('/home'); // Redirect to the desired page after successful login
     }
 }
