@@ -64,11 +64,6 @@
                             {{ __('Reset Password') }}
                         </button>
                     </div>
-                    <div class="flex justify-center pt-5">
-                        <span>Lupa Password? <a href="{{ route('password.request') }}"
-                                class="w-full py-3 font-semibold text-primary rounded-xl hover:underline">Klik
-                                disini</a></span>
-                    </div>
                     <div class="flex justify-center">
                         <span>Belum mempunyai akun? <a href="{{ route('register') }}"
                                 class="w-full py-3 font-semibold text-primary rounded-xl hover:underline">Daftar 

@@ -5,21 +5,33 @@ use App\Http\Controllers\Auth\SocialiteController;
 use Laravel\Fortify\Http\Controllers\EmailVerificationNotificationController;
 use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
 
-Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])->name('socialite.redirect');   
+// Socialite routes
+Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])
+    ->name('socialite.redirect');   
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback']);
 
-$fplimiter = config('fortify.limiters.forgot-password');
-$limiter = config('fortify.limiters.verification');
+// Fortify routes
+$fortifyPrefix = config('fortify.prefix', 'fortify');
+$limiters = [
+    'forgotPassword' => config('fortify.limiters.forgot-password'),
+    'verification' => config('fortify.limiters.verification'),
+];
 
-Route::post(config('fortify.prefix', 'fortify') . '/forgot-password', [PasswordResetLinkController::class, 'store'])
-    ->middleware(['guest', 'throttle:' . $fplimiter])
-    ->name('password.email');
-Route::post(config('fortify.prefix', 'fortify') . 'email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-    ->middleware(['guest', 'throttle:' . $limiter])
-    ->name('verification.send');
+Route::middleware(['guest', 'throttle:' . $limiters['forgotPassword']])->group(function () use ($fortifyPrefix) {
+    // Forgot Password
+    Route::post("$fortifyPrefix/forgot-password", [PasswordResetLinkController::class, 'store'])
+        ->name('password.email');
 
-
-Route::view('/', 'home')->middleware(['auth', 'verified']);
-Route::get('/home', function() {
-    return view('web.frontend.layouts.landing');
+    // Email Verification
+    Route::post("$fortifyPrefix/email/verification-notification", [EmailVerificationNotificationController::class, 'store'])
+        ->name('verification.send');
 });
+
+// Authenticated and verified user routes
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::view('/', 'home');
+    Route::get('home', function () {
+        return view('web.frontend.layouts.landing');
+    });
+});
+

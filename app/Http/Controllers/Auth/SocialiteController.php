@@ -7,6 +7,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 use function PHPUnit\Framework\returnSelf;
@@ -39,19 +40,19 @@ class SocialiteController extends Controller
             if ($userExist) {
                 switch ($userExist->roles()) {
                     case '1':
-                        dd($userExist->roles);
+                        // dd($userExist->roles);
                         Auth::login($userExist);
                         session()->regenerate();
                         return redirect('/admin');
                     break;
                     case '2':
-                        dd($userExist->roles);
+                        // dd($userExist->roles);
                         Auth::login($userExist);
                         session()->regenerate();
                         return redirect('/seller');
                     break;
                     default:
-                        dd($userExist->roles);
+                        // dd($userExist->roles);
                         Auth::login($userExist);
                         session()->regenerate();
                         return redirect('/');
@@ -63,7 +64,7 @@ class SocialiteController extends Controller
                     [
                         'name' => $providerUser->getName(),
                         'email' => $providerUser->getEmail(),
-                        'password' => bcrypt($providerUser->getId()),
+                        'password' => bcrypt(Hash::make($providerUser->getId())),
                         'avatar' => $providerUser->getAvatar(),
                     ]
                 );
@@ -77,7 +78,7 @@ class SocialiteController extends Controller
                     [
                         'name' => $providerUser->getName(),
                         'email' => $providerUser->getEmail(),
-                        'password' => bcrypt($providerUser->getId()),
+                        'password' => bcrypt(Hash::make($providerUser->getId())),
                         'avatar' => $providerUser->getAvatar(),
                     ]
                 );
