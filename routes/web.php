@@ -26,12 +26,18 @@ Route::middleware(['guest', 'throttle:' . $limiters['forgotPassword']])->group(f
     Route::post("$fortifyPrefix/email/verification-notification", [EmailVerificationNotificationController::class, 'store'])
         ->name('verification.send');
 });
-
 // Authenticated and verified user routes
 Route::middleware(['auth', 'verified'])->group(function () {
+    
+    // Default route for all authenticated and verified users
     Route::view('/', 'home');
+    
+    // Additional route for the 'home' URI
     Route::get('home', function () {
         return view('web.frontend.layouts.landing');
     });
+
+    // Add more routes specific to authenticated and verified users if needed
+
 });
 
