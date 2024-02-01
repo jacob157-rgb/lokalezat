@@ -20,6 +20,8 @@ class UserSeeder extends Seeder
             'password' => bcrypt('admin123'),
         ]);
         $admin->syncRoles('admin');
+        $admin->markEmailAsVerified();
+
 
         // Create Seller users
         $seller1 = User::create([
@@ -28,6 +30,8 @@ class UserSeeder extends Seeder
             'password' => bcrypt('lala123'),
         ]);
         $seller1->syncRoles('seller');
+        $seller1->markEmailAsVerified();
+
 
         $seller2 = User::create([
             'name' => 'Lili',
@@ -35,6 +39,8 @@ class UserSeeder extends Seeder
             'password' => bcrypt('lili123'),
         ]);
         $seller2->syncRoles('seller');
+        $seller2->markEmailAsVerified();
+
 
         // Create User users
         $user1 = User::create([
@@ -43,6 +49,8 @@ class UserSeeder extends Seeder
             'password' => bcrypt('lulu123'),
         ]);
         $user1->syncRoles('user');
+        $user1->markEmailAsVerified();
+
 
         $user2 = User::create([
             'name' => 'Khasnah',
@@ -50,6 +58,8 @@ class UserSeeder extends Seeder
             'password' => bcrypt('khasnah123'),
         ]);
         $user2->syncRoles('user');
+        $user2->markEmailAsVerified();
+
 
         $user3 = User::create([
             'name' => 'Ivana',
@@ -57,6 +67,8 @@ class UserSeeder extends Seeder
             'password' => bcrypt('ivana123'),
         ]);
         $user3->syncRoles('user');
+        $user3->markEmailAsVerified();
+
 
         $user4 = User::create([
             'name' => 'Jacob',
@@ -64,6 +76,8 @@ class UserSeeder extends Seeder
             'password' => bcrypt('jacob123'),
         ]);
         $user4->syncRoles('user');
+        $user4->markEmailAsVerified();
+
 
         $user5 = User::create([
             'name' => 'Rifqi',
@@ -71,5 +85,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('rifqi123'),
         ]);
         $user5->syncRoles('user');
+        $user5->markEmailAsVerified();
+
     }
 }

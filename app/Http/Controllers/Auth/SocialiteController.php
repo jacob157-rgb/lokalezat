@@ -50,6 +50,7 @@ class SocialiteController extends Controller
                     ]
                 );
                 $newUser->markEmailAsVerified();
+                $newUser->syncRoles('user');
                 Auth::login($newUser);
                 session()->regenerate();
                 return redirect('/');
@@ -63,6 +64,7 @@ class SocialiteController extends Controller
                         'avatar' => $providerUser->getAvatar(),
                     ]
                 );
+                $newUser->syncRoles('user');
                 Auth::login($newUser);
                 session()->regenerate();
                 return redirect('/');
