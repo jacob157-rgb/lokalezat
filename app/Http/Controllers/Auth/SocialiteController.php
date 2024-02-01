@@ -38,26 +38,7 @@ class SocialiteController extends Controller
             $userExist = User::where('provider_id', $providerUser->getId())->first();
 
             if ($userExist) {
-                switch ($userExist->roles()) {
-                    case '1':
-                        // dd($userExist->roles);
-                        Auth::login($userExist);
-                        session()->regenerate();
-                        return redirect('/admin');
-                    break;
-                    case '2':
-                        // dd($userExist->roles);
-                        Auth::login($userExist);
-                        session()->regenerate();
-                        return redirect('/seller');
-                    break;
-                    default:
-                        // dd($userExist->roles);
-                        Auth::login($userExist);
-                        session()->regenerate();
-                        return redirect('/');
-                    break;
-                }
+                return redirect('/');
             } elseif ($providerUser->user['email_verified'] === true) {
                 $newUser = User::updateOrCreate(
                     ['provider_id' => $providerUser->getId()],

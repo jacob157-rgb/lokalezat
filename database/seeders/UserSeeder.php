@@ -13,55 +13,63 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::insert([
-        //     [
-        //         'name' => 'Admin',
-        //         'email' => 'admin@gmail.com',
-        //         'password' =>bcrypt('admin123'),
-        //         'roles' => 1            
-        //     ],
-        //     [
-        //         'name' => 'Lala',
-        //         'email' => 'lala@gmail.com',
-        //         'password' =>bcrypt('lala123'),
-        //         'roles' => 2
-        //     ],
-        //     [
-        //         'name' => 'Lili',
-        //         'email' => 'lili@gmail.com',
-        //         'password' =>bcrypt('lili123'),
-        //         'roles' => 2
-        //     ],
-        //     [
-        //         'name' => 'Lulu',
-        //         'email' => 'lulu@gmail.com',
-        //         'password' =>bcrypt('lulu123'),
-        //         'roles' => 3
-        //     ],
-        //     [
-        //         'name' => 'Khasnah',
-        //         'email' => 'khasnah@gmail.com',
-        //         'password' =>bcrypt('khasnah123'),
-        //         'roles' => 3
-        //     ],
-        //     [
-        //         'name' => 'Ivana',
-        //         'email' => 'ivana@gmail.com',
-        //         'password' =>bcrypt('ivana123'),
-        //         'roles' => 3
-        //     ],
-        //     [
-        //         'name' => 'Jacob',
-        //         'email' => 'jacob@gmail.com',
-        //         'password' =>bcrypt('jacob123'),
-        //         'roles' => 3
-        //     ],
-        //     [
-        //         'name' => 'Rifqi',
-        //         'email' => 'rifqi@gmail.com',
-        //         'password' =>bcrypt('rifqi123'),
-        //         'roles' => 3
-        //     ],
-        //     ]);
+        // Create Admin user
+        $admin = User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin123'),
+        ]);
+        $admin->syncRoles('admin');
+
+        // Create Seller users
+        $seller1 = User::create([
+            'name' => 'Lala',
+            'email' => 'lala@gmail.com',
+            'password' => bcrypt('lala123'),
+        ]);
+        $seller1->syncRoles('seller');
+
+        $seller2 = User::create([
+            'name' => 'Lili',
+            'email' => 'lili@gmail.com',
+            'password' => bcrypt('lili123'),
+        ]);
+        $seller2->syncRoles('seller');
+
+        // Create User users
+        $user1 = User::create([
+            'name' => 'Lulu',
+            'email' => 'lulu@gmail.com',
+            'password' => bcrypt('lulu123'),
+        ]);
+        $user1->syncRoles('user');
+
+        $user2 = User::create([
+            'name' => 'Khasnah',
+            'email' => 'khasnah@gmail.com',
+            'password' => bcrypt('khasnah123'),
+        ]);
+        $user2->syncRoles('user');
+
+        $user3 = User::create([
+            'name' => 'Ivana',
+            'email' => 'ivana@gmail.com',
+            'password' => bcrypt('ivana123'),
+        ]);
+        $user3->syncRoles('user');
+
+        $user4 = User::create([
+            'name' => 'Jacob',
+            'email' => 'jacob@gmail.com',
+            'password' => bcrypt('jacob123'),
+        ]);
+        $user4->syncRoles('user');
+
+        $user5 = User::create([
+            'name' => 'Rifqi',
+            'email' => 'rifqi@gmail.com',
+            'password' => bcrypt('rifqi123'),
+        ]);
+        $user5->syncRoles('user');
     }
 }
