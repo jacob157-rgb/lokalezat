@@ -22,19 +22,33 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // $this->app->instance(
-        //     LoginResponse::class,
-        //     new class implements LoginResponse {
-        //         public function toResponse($request)
-        //         {
-        //             if (Auth::user()->hasRole('Admin')) {
-        //                 return $request->wantsJson()
-        //                     ? response()->json(['two_factor' => false])
-        //                     : redirect()->intended(config('fortify.home-admin'));
-        //             }
-        //         }
-        //     }
-        // );
+        $this->app->instance(
+            LoginResponse::class,
+            new class implements LoginResponse
+            {
+                public function toResponse($request)
+                {
+                    dd(Auth::user()->getRoleNames(), Auth::user()->getAllPermissions());
+                    if (Auth::user()->hasRole('admin')) {
+                        return $request->wantsJson()
+                            ? response()->json(['two_factor' => false])
+                            : redirect()->intended(config('fortify.home-admin'));
+                    }
+        
+                    if (Auth::user()->hasRole('seller')) {
+                        return $request->wantsJson()
+                            ? response()->json(['two_factor' => false])
+                            : redirect()->intended(config('fortify.home-seller'));
+                    }
+        
+                    // Assuming 'user' is the default role
+                    return $request->wantsJson()
+                        ? response()->json(['two_factor' => false])
+                        : redirect()->intended(config('fortify.home'));
+                }
+            }
+        );
+        
     }
 
     /**
@@ -43,10 +57,10 @@ class FortifyServiceProvider extends ServiceProvider
     public function boot(): void
     {
         
-        $this->app->singleton(
-            \Laravel\Fortify\Contracts\LoginResponse::class,
-            \App\Http\Responses\LoginResponse::class
-        );
+        // $this->app->singleton(
+        //     \Laravel\Fortify\Contracts\LoginResponse::class,
+        //     \App\Http\Responses\LoginResponse::class
+        // );
 
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
@@ -86,7 +100,6 @@ class FortifyServiceProvider extends ServiceProvider
 
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
-
             return Limit::perMinute(5)->by($throttleKey);
         });
 

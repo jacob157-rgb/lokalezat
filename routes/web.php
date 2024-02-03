@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\SocialiteController;
 use Laravel\Fortify\Http\Controllers\EmailVerificationNotificationController;
 use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
 
+
 // Socialite routes
 Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])
     ->name('socialite.redirect');   
@@ -16,7 +17,7 @@ $limiters = [
     'forgotPassword' => config('fortify.limiters.forgot-password'),
     'verification' => config('fortify.limiters.verification'),
 ];
-
+// Fortify Throt
 Route::middleware(['guest', 'throttle:' . $limiters['forgotPassword']])->group(function () use ($fortifyPrefix) {
     // Forgot Password
     Route::post("$fortifyPrefix/forgot-password", [PasswordResetLinkController::class, 'store'])
@@ -26,18 +27,9 @@ Route::middleware(['guest', 'throttle:' . $limiters['forgotPassword']])->group(f
     Route::post("$fortifyPrefix/email/verification-notification", [EmailVerificationNotificationController::class, 'store'])
         ->name('verification.send');
 });
-// Authenticated and verified user routes
-Route::middleware(['auth', 'verified'])->group(function () {
-    
-    // Default route for all authenticated and verified users
-    Route::view('/', 'home');
-    
-    // Additional route for the 'home' URI
-    Route::get('home', function () {
-        return view('web.frontend.layouts.landing');
-    });
 
-    // Add more routes specific to authenticated and verified users if needed
-
+Route::get('/', function () {
+    return view('web.frontend.layouts.landing');
 });
+
 
