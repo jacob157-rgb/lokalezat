@@ -71,10 +71,13 @@
         </div>
     </div>
     <div class="flex content-start justify-center pt-10">
-        <div class="w-11/12 py-10 bg-black px-14 rounded-3xl h-96">
+        <div class="relative w-11/12 py-10 bg-black px-14 rounded-3xl h-96">
             <span class="text-2xl font-medium text-white">Rekomendasi kuliner dari kami <br><span class="text-base font-normal">Kuliner - kuliner berikut merupakan kuliner yang paling banyak dicari di Lokalezat!</span></span>
-            <div class="z-0 w-full mt-24 h-1/2 rounded-3xl bg-primary"></div>
-            <button class="absolute z-10 p-3 bg-white rounded-full"><span class="text-4xl"><i class="bi bi-chevron-left"></i></span></button>
+            <div class="z-0 w-full mt-24 h-1/2 rounded-3xl bg-primary">
+                <div class="w-10 h-10 bg-white"></div>
+            </div>
+            <button class="absolute z-10 p-3 bg-white rounded-full top-60 left-5"><span class="text-4xl"><i class="bi bi-chevron-left"></i></span></button>
+            <button class="absolute z-10 p-3 bg-white rounded-full top-60 right-5"><span class="text-4xl"><i class="bi bi-chevron-right"></i></span></button>
         </div>
     </div>
 </body>

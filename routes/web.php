@@ -31,5 +31,11 @@ Route::middleware(['guest', 'throttle:' . $limiters['forgotPassword']])->group(f
 Route::get('/', function () {
     return view('web.frontend.layouts.landing');
 });
+Route::get('/seller', function () {
+    return view('web.backend.layouts.tokokuliner');
+});
+Route::get('/admin', function () {
+    return view('web.frontend.layouts.landing');
+});
 
 
