@@ -8,11 +8,12 @@
 <body>
     @include('components.header')
     <div class="flex content-start justify-center">
-        <div class="bg-peach flex flex-col h-screen w-11/12 rounded-3xl">
-            <div class="w-auto pt-8 md:pt-10 text-center">
+        <div class="flex flex-col w-11/12 h-screen bg-peach overflow-clip rounded-3xl">
+            {{-- Text Jumbotron --}}
+            <div class="w-auto pt-8 text-center md:pt-10">
                 {{-- Text Jumbotron --}}
-                <div class="md:mt-8 px-10">
-                    <span class="text-3xl md:text-4xl font-bold">Temukan
+                <div class="px-10 md:mt-8">
+                    <span class="text-3xl font-bold md:text-4xl">Temukan
                         <span
                             class="inline-block rotate-[-6deg] transform rounded-xl bg-black px-3 py-1 text-white">Kuliner</span>
                         Lokal<br>Sekarang Juga
@@ -24,12 +25,12 @@
             {{-- Form Search & GPS Button --}}
             <div class="w-auto pt-6">
                 {{-- Search Form --}}
-                <div class="flex flex-nowrap justify-center pt-5 px-52">
+                <div class="flex justify-center pt-5 flex-nowrap px-52">
                     <form class="w-11/12 grow me-3">
                         <div class="relative flex" x-data="{ searchInput: '' }">
                             {{-- Search Icon Form --}}
-                            <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
-                                <svg class="h-5 w-5 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
+                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
@@ -37,7 +38,7 @@
                             </div>
                             {{-- Input Field --}}
                             <input type="search" id="default-search" x-model="searchInput"
-                                class="block w-full rounded-xl border border-gray-300 bg-gray-50 p-3 ps-10 text-sm text-gray-900 focus:border-blue-200 focus:ring-blue-200">
+                                class="block w-full p-3 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 ps-10 focus:border-blue-200 focus:ring-blue-200">
                             {{-- Reset Button --}}
                             <button x-show="searchInput.trim() !== ''" type="reset"
                                 class="absolute bottom-4 end-16 pr-7">
@@ -54,14 +55,26 @@
                                 <i class="bi bi-arrow-right-circle"></i></button>
                         </div>
                     </form>
-                    <button class="bg-white transition-all duration-150 ease-out flex group hover:pr-14 text-3xl rounded-3xl overflow-hidden">
-                        <span class="py-1.5 px-2.5 bg-primary rounded-full text-white"><i class="bi bi-crosshair"></span></i><span class="bg-white hidden transition-all ease-out ms-3 mt-2 group-hover:block text-xl whitespace-nowrap">Lokasi Saya</span>
+                    <button class="flex overflow-hidden text-3xl transition-all duration-150 ease-out bg-white group hover:pr-14 rounded-3xl">
+                        <span class="py-1.5 px-2.5 bg-primary rounded-full text-white"><i class="bi bi-crosshair"></span></i><span class="hidden mt-2 text-xl transition-all ease-out bg-white ms-3 group-hover:block whitespace-nowrap">Lokasi Saya</span>
                     </button>
                 </div>
             </div>
             {{-- End Form Search & GPS Button --}}
 
-            
+            {{-- 3 Card --}}
+            <div class="flex items-center justify-center w-auto">
+                <div class="z-10 w-1/4 mt-40 -rotate-[15deg] bg-black h-96 rounded-3xl"></div>
+                <div class="z-0 w-1/4 bg-primary h-96 rounded-3xl"></div>
+                <div class="z-10 w-1/4 mt-40 rotate-[15deg] bg-black h-96 rounded-3xl"></div>
+            </div>
+        </div>
+    </div>
+    <div class="flex content-start justify-center pt-10">
+        <div class="w-11/12 py-10 bg-black px-14 rounded-3xl h-96">
+            <span class="text-2xl font-medium text-white">Rekomendasi kuliner dari kami <br><span class="text-base font-normal">Kuliner - kuliner berikut merupakan kuliner yang paling banyak dicari di Lokalezat!</span></span>
+            <div class="z-0 w-full mt-24 h-1/2 rounded-3xl bg-primary"></div>
+            <button class="absolute z-10 p-3 bg-white rounded-full"><span class="text-4xl"><i class="bi bi-chevron-left"></i></span></button>
         </div>
     </div>
 </body>
