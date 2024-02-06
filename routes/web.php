@@ -8,7 +8,7 @@ use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
 
 // Socialite routes
 Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])
-    ->name('socialite.redirect');   
+    ->name('socialite.redirect');
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback']);
 
 // Fortify routes
@@ -30,6 +30,11 @@ Route::middleware(['guest', 'throttle:' . $limiters['forgotPassword']])->group(f
 
 Route::get('/', function () {
     return view('web.frontend.layouts.landing');
+});
+
+//penjual
+Route::get('/penjual', function () {
+    return view('web.backend.layouts.penjual.index');
 });
 
 
